@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>MongoDB BSON ObjectId</title>
+  </head>
+<body>
+<div>MongoDB BSON ObjectId <input type="text" value="53bf5e949af0728372729857" /></div>
+<br />
+<textarea cols="50" rows="12"></textarea>
+<script>
+    function ObjectIdDetails (id) {
+    	return {
+    		seconds: parseInt(id.slice(0, 8), 16),
+    		machineIdentifier: parseInt(id.slice(8, 14), 16),
+    		processId: parseInt(id.slice(14, 18), 16),
+    		counter: parseInt(id.slice(18, 24), 16)
+    	};
+    }
+    
+    function update () {
+        $('textarea').val(JSON.stringify(ObjectIdDetails($('input').val()), null, '\t'));
+    }
+    
+    $('input').bind('change keyup keydown', update);
+    update();
+</script>
+</body>
+</html>
+<!-- credit: https://stackoverflow.com/a/24691055/6927300 -->
